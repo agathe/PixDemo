@@ -75,3 +75,16 @@ extension MISPhotosViewController {
             return CGSize(width: width, height: height)
     }
 }
+
+
+// MARK: infinite scrolling
+
+extension MISPhotosViewController {
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        let indices = self.collectionView?.indexPathsForVisibleItems()
+        let more = self.viewModel?.needsMoreData(indices?.last) ?? false
+        if  more {
+            self.viewModel?.fetchNextPhotos()
+        }
+    }
+}

@@ -18,7 +18,9 @@ class MISPhotosViewModel: NSObject {
     let data = Observable<[MISPhotoModel]>([])
     
     var fetchCount = 20
-    var page = 1
+    var page = 0
+    var isLoadingMore = false
+    
     var serialQueue:dispatch_queue_t = {
         let serialQueueName = "com.misberri.500px.serialqueue"
         return dispatch_queue_create(serialQueueName, DISPATCH_QUEUE_SERIAL)
@@ -26,7 +28,8 @@ class MISPhotosViewModel: NSObject {
     
     func fetchNextPhotos(){
         dispatch_async(serialQueue) { () -> Void in
-            let url = self.serviceUrl(page: self.page, count: self.fetchCount) as NSURL!
+            self.isLoadingMore = true
+            let url = self.serviceUrl(page: self.page + 1, count: self.fetchCount) as NSURL!
             let task = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
                 if error != nil {return }
                 if let data = data {
@@ -40,8 +43,11 @@ class MISPhotosViewModel: NSObject {
                         let photos = self.deserializePhotos(jsonDict)
                         let all = self.data.get() + photos
                             self.data.set(all)
+                        self.page += 1
                     }
                 }
+                // TODO update page
+                self.isLoadingMore = false
             })
             task.resume()
         }
@@ -101,6 +107,11 @@ class MISPhotosViewModel: NSObject {
         }
         
         return data
+    }
+    
+    func needsMoreData(lastShownIndex: NSIndexPath?) -> Bool {
+        guard let lastShownIndex = lastShownIndex else {return false}
+        return lastShownIndex.row >= self.data.get().count - 5 && !self.isLoadingMore
     }
     
 }
