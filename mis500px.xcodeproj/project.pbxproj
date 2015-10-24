@@ -19,6 +19,8 @@
 		311C8D721BDB3B7300F4020B /* MISPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311C8D711BDB3B7300F4020B /* MISPhotosViewModel.swift */; settings = {ASSET_TAGS = (); }; };
 		311C8D741BDB3BF300F4020B /* MISPhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311C8D731BDB3BF300F4020B /* MISPhotoModel.swift */; settings = {ASSET_TAGS = (); }; };
 		311C8D761BDB3C6600F4020B /* MISUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311C8D751BDB3C6600F4020B /* MISUserModel.swift */; settings = {ASSET_TAGS = (); }; };
+		311C8D781BDB4C4700F4020B /* MISPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311C8D771BDB4C4700F4020B /* MISPhotoCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		311C8D7B1BDB511E00F4020B /* UIImageView+MIS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311C8D7A1BDB511E00F4020B /* UIImageView+MIS.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		311C8D711BDB3B7300F4020B /* MISPhotosViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MISPhotosViewModel.swift; sourceTree = "<group>"; };
 		311C8D731BDB3BF300F4020B /* MISPhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MISPhotoModel.swift; sourceTree = "<group>"; };
 		311C8D751BDB3C6600F4020B /* MISUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MISUserModel.swift; sourceTree = "<group>"; };
+		311C8D771BDB4C4700F4020B /* MISPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MISPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		311C8D7A1BDB511E00F4020B /* UIImageView+MIS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+MIS.swift"; path = "mis500px/UIImageView+MIS.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 		311C8D331BDB32C600F4020B = {
 			isa = PBXGroup;
 			children = (
+				311C8D791BDB50EF00F4020B /* Utils */,
 				311C8D6D1BDB32F600F4020B /* CoreGraphics.framework */,
 				311C8D6E1BDB32F600F4020B /* CoreImage.framework */,
 				311C8D3E1BDB32C600F4020B /* mis500px */,
@@ -120,6 +125,7 @@
 				311C8D711BDB3B7300F4020B /* MISPhotosViewModel.swift */,
 				311C8D731BDB3BF300F4020B /* MISPhotoModel.swift */,
 				311C8D751BDB3C6600F4020B /* MISUserModel.swift */,
+				311C8D771BDB4C4700F4020B /* MISPhotoCollectionViewCell.swift */,
 			);
 			path = mis500px;
 			sourceTree = "<group>";
@@ -140,6 +146,14 @@
 				311C8D611BDB32C600F4020B /* Info.plist */,
 			);
 			path = mis500pxUITests;
+			sourceTree = "<group>";
+		};
+		311C8D791BDB50EF00F4020B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				311C8D7A1BDB511E00F4020B /* UIImageView+MIS.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +287,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				311C8D7B1BDB511E00F4020B /* UIImageView+MIS.swift in Sources */,
+				311C8D781BDB4C4700F4020B /* MISPhotoCollectionViewCell.swift in Sources */,
 				311C8D421BDB32C600F4020B /* MISPhotosViewController.swift in Sources */,
 				311C8D721BDB3B7300F4020B /* MISPhotosViewModel.swift in Sources */,
 				311C8D741BDB3BF300F4020B /* MISPhotoModel.swift in Sources */,

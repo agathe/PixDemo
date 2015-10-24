@@ -8,8 +8,10 @@
 
 import UIKit
 
-class MISPhotosViewController: UICollectionViewController {
 
+
+class MISPhotosViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    let cellIdentifierLarge = "LargeCell"
     var viewModel: MISPhotosViewModel?
     
     
@@ -18,7 +20,7 @@ class MISPhotosViewController: UICollectionViewController {
         self.title = "500 px"
         self.view.backgroundColor = UIColor.whiteColor()
         self.collectionView?.backgroundColor = UIColor.whiteColor()
-        // Do any additional setup after loading the view, typically from a nib.
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,10 +37,26 @@ class MISPhotosViewController: UICollectionViewController {
 extension MISPhotosViewController {
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0 //self.viewModel!.data.count
+        return self.viewModel!.data.count
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifierLarge, forIndexPath: indexPath) as! MISPhotoCollectionViewCell
+        cell.setDataObject(self.viewModel!.data[indexPath.row])
+        return cell
+    }
+}
+
+// MARK: collection layout delegate
+
+extension MISPhotosViewController {
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+            return CGSize(width: self.view.bounds.width ?? 360, height: 300)
     }
 }
