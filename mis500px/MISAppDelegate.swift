@@ -9,13 +9,31 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class MISAppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let initialViewController = storyboard.instantiateViewControllerWithIdentifier("rootNavigationController") as! UINavigationController
+        
+        // View models should be passed to a VC, and not created by it
+        let photosViewModel = MISPhotosViewModel()
+        let photosViewController = initialViewController.viewControllers[0] as! MISPhotosViewController
+        photosViewController.viewModel = photosViewModel
+        
+        // test data
+        let user = MISUserModel( "victor", "hugo")
+        let photo = MISPhotoModel(name: "Beautiful photo", user: user, surl: "https://pacdn.500px.org/257887/58f5caac4ae39270525777cccfe9b3619d5ba281/1.jpg?0")
+        photosViewModel.data.append(photo)
+
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
         return true
     }
 

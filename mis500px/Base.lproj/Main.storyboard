@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0o0-mW-BNj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -8,7 +8,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Swr-Pn-aJH">
             <objects>
-                <navigationController id="0o0-mW-BNj" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="rootNavigationController" id="0o0-mW-BNj" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Pw-2V-XpW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -24,7 +24,7 @@
         <!--500px-->
         <scene sceneID="e0I-LT-TaO">
             <objects>
-                <collectionViewController title="500px" id="ZwH-AX-CFZ" customClass="ViewController" customModule="mis500px" sceneMemberID="viewController">
+                <collectionViewController title="500px" id="ZwH-AX-CFZ" customClass="MISPhotosViewController" customModule="mis500px" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="woX-If-cgf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -59,12 +59,20 @@
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by The Best" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0j2-HT-aKH">
+                                            <rect key="frame" x="108" y="160.5" width="90" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
                                     <constraint firstAttribute="trailingMargin" secondItem="gro-Nd-U46" secondAttribute="trailing" constant="0.5" id="BXF-GB-yIs"/>
                                     <constraint firstItem="J8p-M4-E2C" firstAttribute="leading" secondItem="T7d-yt-aso" secondAttribute="leadingMargin" id="Efe-dz-Nkv"/>
+                                    <constraint firstItem="0j2-HT-aKH" firstAttribute="leading" secondItem="KFl-jf-f80" secondAttribute="trailing" constant="8" id="NEj-1y-Uce"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="0j2-HT-aKH" secondAttribute="bottom" constant="16" id="NFe-dB-5fw"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="J8p-M4-E2C" secondAttribute="bottom" id="RC8-Da-qcV"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="KFl-jf-f80" secondAttribute="bottom" constant="16" id="Vc9-B3-CKh"/>
                                     <constraint firstItem="KFl-jf-f80" firstAttribute="leading" secondItem="T7d-yt-aso" secondAttribute="leadingMargin" constant="16" id="YxN-vI-mVM"/>
