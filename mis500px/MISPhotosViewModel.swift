@@ -10,13 +10,15 @@ import UIKit
 
 
 class MISPhotosViewModel: NSObject {
-    let baseUrl = "https://api.500px.com/v1/photos?feature=popular&consumer_key=vW8Ns53y0F57vkbHeDfe3EsYFCatTJ3BrFlhgV3W" //&image_size[]=2
+    let apiBaseUrl = "https://api.500px.com/v1/photos" //&image_size[]=2
+    let apiBaseParams = ["consumer_key": "vW8Ns53y0F57vkbHeDfe3EsYFCatTJ3BrFlhgV3W",
+    "feature": "popular"]
     let apiPhotosName = "photos"
     
     let data = Observable<[MISPhotoModel]>([])
     
-    var fetchCount = 10
-    var offset = 0
+    var fetchCount = 20
+    var page = 1
     var serialQueue:dispatch_queue_t = {
         let serialQueueName = "com.misberri.500px.serialqueue"
         return dispatch_queue_create(serialQueueName, DISPATCH_QUEUE_SERIAL)
@@ -24,7 +26,7 @@ class MISPhotosViewModel: NSObject {
     
     func fetchNextPhotos(){
         dispatch_async(serialQueue) { () -> Void in
-            let url = self.serviceUrl(offset: 0, count: 20) as NSURL!
+            let url = self.serviceUrl(page: self.page, count: self.fetchCount) as NSURL!
             let task = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
                 if error != nil {return }
                 if let data = data {
@@ -45,8 +47,17 @@ class MISPhotosViewModel: NSObject {
         }
     }
     
-    func serviceUrl(offset offset: Int, count: Int) -> NSURL? {
-        return NSURL(string: baseUrl)
+    func serviceUrl(page page: Int, count: Int) -> NSURL? {
+        var params = apiBaseParams
+        params["image_size[]"] = "3"
+        params["rpp"] = "\(count)"
+        params["page"] = "\(page)"
+        var paramQuery = "?"
+        for (k,v) in params{
+            paramQuery += "\(k)=\(v)&"
+        }
+        let url = NSURL(string: apiBaseUrl.stringByAppendingString(paramQuery))
+        return url
     }
     
     func deserializePhotos(jsonDict: NSDictionary) -> [MISPhotoModel] {
@@ -58,7 +69,17 @@ class MISPhotosViewModel: NSObject {
         if let photos = photos {
             for photoDict in photos {
                 let name = photoDict["name"] as? String
-                let url = photoDict["image_url"] as? String
+                let urlObject = photoDict["image_url"]
+                var url: String?
+                switch urlObject {
+                case let obj as String:
+                    url = obj
+                case let obj as [String]:
+                    url = obj[0]
+                default:
+                    url = nil
+                }
+                
                 
                 let userDict = photoDict["user"] as? NSDictionary
                 

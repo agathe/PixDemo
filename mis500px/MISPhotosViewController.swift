@@ -20,6 +20,7 @@ class MISPhotosViewController: UICollectionViewController, UICollectionViewDeleg
         self.title = "500 px"
         self.view.backgroundColor = UIColor.whiteColor()
         self.collectionView?.backgroundColor = UIColor.whiteColor()
+        self.edgesForExtendedLayout = UIRectEdge.None
 
         self.viewModel!.data.didChange.addHandler(self, handler: MISPhotosViewController.dataDidChange)
     }
@@ -69,6 +70,8 @@ extension MISPhotosViewController {
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            return CGSize(width: self.view.bounds.width ?? 200, height: 200)
+            let width = self.view.bounds.width ?? 200
+            let height = width * 9 / 16
+            return CGSize(width: width, height: height)
     }
 }
