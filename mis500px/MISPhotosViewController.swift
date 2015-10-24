@@ -21,11 +21,23 @@ class MISPhotosViewController: UICollectionViewController, UICollectionViewDeleg
         self.view.backgroundColor = UIColor.whiteColor()
         self.collectionView?.backgroundColor = UIColor.whiteColor()
 
+        self.viewModel!.data.didChange.addHandler(self, handler: MISPhotosViewController.dataDidChange)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.viewModel?.fetchNextPhotos()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func dataDidChange(oldValue: [MISPhotoModel], newValue: [MISPhotoModel]) {
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.collectionView?.reloadData()
+        }
+        
     }
 
 }
@@ -37,7 +49,7 @@ class MISPhotosViewController: UICollectionViewController, UICollectionViewDeleg
 extension MISPhotosViewController {
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel!.data.count
+        return self.viewModel!.data.get().count
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -46,7 +58,7 @@ extension MISPhotosViewController {
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifierLarge, forIndexPath: indexPath) as! MISPhotoCollectionViewCell
-        cell.setDataObject(self.viewModel!.data[indexPath.row])
+        cell.setDataObject(self.viewModel!.data.get()[indexPath.row])
         return cell
     }
 }
