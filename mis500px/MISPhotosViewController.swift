@@ -57,6 +57,6 @@ extension MISPhotosViewController {
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            return CGSize(width: self.view.bounds.width ?? 360, height: 300)
+            return CGSize(width: self.view.bounds.width ?? 200, height: 200)
     }
 }

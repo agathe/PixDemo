@@ -16,6 +16,7 @@ class MISPhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var userLabel: UILabel!
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -30,8 +31,9 @@ class MISPhotoCollectionViewCell: UICollectionViewCell {
     
     func setDataObject(photo: MISPhotoModel) {
         self.userImageView.layer.cornerRadius = self.userImageView.bounds.width / 2 ?? 30
+        self.userImageView.clipsToBounds = true
         
-        self.titleLabel.text = photo.name ?? ""
+        self.titleLabel.attributedText = photo.name?.mis_title() ?? "".mis_title()
         if let name = photo.user?.name {
             self.userLabel.text = "by \(name.capitalizedString)"
         } else {
@@ -39,7 +41,10 @@ class MISPhotoCollectionViewCell: UICollectionViewCell {
         }
         
         self.imageView.showImage(photo.url, placeholder: "imagePlaceholder")
+        self.userImageView.showImage(photo.user?.userpicUrl, placeholder: "userPlaceholder")
+        
+        self.titleLabel.sizeToFit()
+        self.userLabel.sizeToFit()
     }
-    
     
 }
