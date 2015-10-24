@@ -37,13 +37,8 @@ class MISPhotosViewModel: NSObject {
                     if let jsonDict = jsonDict {
                         let photos = self.deserializePhotos(jsonDict)
                         let all = self.data.get() + photos
-//                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
                             self.data.set(all)
-//                        })
-                        
                     }
-                    
-                    print("json ????? \(jsonDict)")
                 }
             })
             task.resume()
