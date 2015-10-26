@@ -18,6 +18,13 @@ class MISAppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
+        UINavigationBar.appearance().tintColor = UIColor.blackColor()
+        UINavigationBar.appearance().barTintColor = UIColor.blackColor()
+        UINavigationBar.appearance().translucent = false
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        application.statusBarStyle = .LightContent
+        
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let initialViewController = storyboard.instantiateViewControllerWithIdentifier("rootNavigationController") as! UINavigationController
@@ -27,11 +34,6 @@ class MISAppDelegate: UIResponder, UIApplicationDelegate {
         let photosViewController = initialViewController.viewControllers[0] as! MISPhotosViewController
         photosViewController.viewModel = photosViewModel
         
-        // test data
-        let user = MISUserModel( "victor", "hugo", userPicUrl: "https://pacdn.500px.org/257887/58f5caac4ae39270525777cccfe9b3619d5ba281/1.jpg?0")
-        let photo = MISPhotoModel(name: "Beautiful Photo", user: user, surl: "https://drscdn.500px.org/photo/126156197/w%3D140_h%3D140/1f0d85b746c4b327a575d6488390ad53?v=2")
-        photosViewModel.data.set(photosViewModel.data.get() + [photo])
-
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
         return true

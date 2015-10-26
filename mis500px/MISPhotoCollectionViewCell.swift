@@ -15,7 +15,9 @@ class MISPhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var userLabel: UILabel!
+    @IBOutlet var titleTopConstraint: NSLayoutConstraint!
     
+    var setupDone = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,13 +27,27 @@ class MISPhotoCollectionViewCell: UICollectionViewCell {
         super.init(coder: aDecoder)!
     }
     
-    override func prepareForReuse() {
+    func setupView() {
         self.userImageView.layer.cornerRadius = self.userImageView.bounds.width / 2 ?? 30
+        self.userImageView.clipsToBounds = true
+    }
+    
+    override func prepareForReuse() {
+        if !self.setupDone {
+            self.setupView()
+            self.setupDone = true
+        }
+        
+        self.userLabel.text = nil
+        self.titleLabel.text = nil
+        self.userImageView.image = nil
+        self.imageView.image = nil
+        
+        self.setFirstCell(false)
     }
     
     func setDataObject(photo: MISPhotoModel) {
-        self.userImageView.layer.cornerRadius = self.userImageView.bounds.width / 2 ?? 30
-        self.userImageView.clipsToBounds = true
+        
         
         self.titleLabel.attributedText = photo.name?.mis_title() ?? "".mis_title()
         if let name = photo.user?.name {
@@ -47,4 +63,7 @@ class MISPhotoCollectionViewCell: UICollectionViewCell {
         self.userLabel.sizeToFit()
     }
     
+    func setFirstCell(bool:Bool){
+        self.titleTopConstraint.constant = bool ? 16 + 44 : 16
+    }
 }

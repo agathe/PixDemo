@@ -97,6 +97,7 @@
                                 <connections>
                                     <outlet property="imageView" destination="J8p-M4-E2C" id="Wey-Zm-NwZ"/>
                                     <outlet property="titleLabel" destination="gro-Nd-U46" id="YHE-O7-Z08"/>
+                                    <outlet property="titleTopConstraint" destination="dRP-yk-jku" id="kvN-FF-n7b"/>
                                     <outlet property="userImageView" destination="KFl-jf-f80" id="Kx1-yo-RSI"/>
                                     <outlet property="userLabel" destination="0j2-HT-aKH" id="xaE-eN-hqJ"/>
                                 </connections>

@@ -7,28 +7,41 @@
 //
 import UIKit
 
-
+let numberOfPhotosForFilter = 50
 
 class MISPhotosViewModel: NSObject {
-    let apiBaseUrl = "https://api.500px.com/v1/photos" //&image_size[]=2
+    let apiBaseUrl = "https://api.500px.com/v1/photos"
     let apiBaseParams = ["consumer_key": "vW8Ns53y0F57vkbHeDfe3EsYFCatTJ3BrFlhgV3W",
     "feature": "popular"]
     let apiPhotosName = "photos"
     
+    // Output
     let data = Observable<[MISPhotoModel]>([])
+    let isLoadingMore = Observable<Bool>(false)
     
-    var fetchCount = 20
-    var page = 0
-    var isLoadingMore = false
+    // Input
+    let searchQuery = Observable<String?>(nil)
     
-    var serialQueue:dispatch_queue_t = {
+    // pagination
+    private var fetchCount = 25
+    private var page = 0
+    
+    
+    private var serialQueue:dispatch_queue_t = {
         let serialQueueName = "com.misberri.500px.serialqueue"
         return dispatch_queue_create(serialQueueName, DISPATCH_QUEUE_SERIAL)
     }()
     
-    func fetchNextPhotos(){
+    
+    // MARK: Data
+    
+    func fetchNextPhotos() {
+        self.fetchNextPhotos(false)
+    }
+    
+    func fetchNextPhotos(reset: Bool) {
         dispatch_async(serialQueue) { () -> Void in
-            self.isLoadingMore = true
+            self.isLoadingMore.set(true)
             let url = self.serviceUrl(page: self.page + 1, count: self.fetchCount) as NSURL!
             let task = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
                 if error != nil {return }
@@ -41,19 +54,23 @@ class MISPhotosViewModel: NSObject {
                     }
                     if let jsonDict = jsonDict {
                         let photos = self.deserializePhotos(jsonDict)
-                        let all = self.data.get() + photos
-                            self.data.set(all)
+                        var all = !reset ? self.data.get() + photos : photos
+
+                        if self.hasQuery() {
+                            all = self.filterPhotos(all, query: self.searchQuery.get())
+                        }
+                        
+                        self.data.set(all)
                         self.page += 1
                     }
                 }
-                // TODO update page
-                self.isLoadingMore = false
+                self.isLoadingMore.set(false)
             })
             task.resume()
         }
     }
     
-    func serviceUrl(page page: Int, count: Int) -> NSURL? {
+    private func serviceUrl(page page: Int, count: Int) -> NSURL? {
         var params = apiBaseParams
         params["image_size[]"] = "3"
         params["rpp"] = "\(count)"
@@ -66,7 +83,7 @@ class MISPhotosViewModel: NSObject {
         return url
     }
     
-    func deserializePhotos(jsonDict: NSDictionary) -> [MISPhotoModel] {
+    private func deserializePhotos(jsonDict: NSDictionary) -> [MISPhotoModel] {
         if jsonDict.count == 0 {return []}
         
         var data : [MISPhotoModel] = []
@@ -111,7 +128,57 @@ class MISPhotosViewModel: NSObject {
     
     func needsMoreData(lastShownIndex: NSIndexPath?) -> Bool {
         guard let lastShownIndex = lastShownIndex else {return false}
-        return lastShownIndex.row >= self.data.get().count - 5 && !self.isLoadingMore
+        let count = self.count()
+        let hasQuery = self.hasQuery()
+        return !self.isLoadingMore.get()
+            && !hasQuery
+            && lastShownIndex.row >= count - 5
     }
+
+    func count() -> Int {
+        return self.data.get().count
+    }
+    
+    func numberOfSections() -> Int {
+        return 1
+    }
+    
+    // MARK: filtering
+    
+    private func filterPhotos(photos:[MISPhotoModel], query: String?) -> [MISPhotoModel] {
+        guard let query = query else { return photos }
+        
+        let filteredPhotos = photos.filter({photo in
+            let s:String? = photo.name?.lowercaseString
+            if let s = s {
+                return s.rangeOfString(query.lowercaseString) != nil
+            }
+            return true
+        })
+        return filteredPhotos
+    }
+    
+    private func hasQuery() -> Bool {
+        return self.searchQuery.get() != nil
+    }
+    
+    func setQuery(text: String?) {
+        if let text = text {
+            let query:String = text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            let searchQuery:String? = query.characters.count > 0 ? query : nil
+            self.searchQuery.set(searchQuery)
+        } else {
+            self.searchQuery.set(nil)
+        }
+        self.page = 0
+        self.fetchNextPhotos(true)
+    }
+    
+    func resetQuery() {
+        self.searchQuery.set(nil)
+        self.page = 0
+        self.fetchNextPhotos(true)
+    }
+   
     
 }

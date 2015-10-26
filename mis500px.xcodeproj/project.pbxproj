@@ -65,6 +65,7 @@
 		311C8D7A1BDB511E00F4020B /* UIImageView+MIS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+MIS.swift"; path = "mis500px/UIImageView+MIS.swift"; sourceTree = "<group>"; };
 		311C8D7C1BDB56DF00F4020B /* String+MIS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MIS.swift"; sourceTree = "<group>"; };
 		311C8D7E1BDB6EA200F4020B /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		311C8D801BDDAA5F00F4020B /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +98,7 @@
 		311C8D331BDB32C600F4020B = {
 			isa = PBXGroup;
 			children = (
+				311C8D801BDDAA5F00F4020B /* README */,
 				311C8D791BDB50EF00F4020B /* Utils */,
 				311C8D6D1BDB32F600F4020B /* CoreGraphics.framework */,
 				311C8D6E1BDB32F600F4020B /* CoreImage.framework */,

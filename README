@@ -1,0 +1,37 @@
+# Notes
+
+- MVVM
+Model View View Model is a variation over MVC that enforces a better separation of concerns.
+View Controllers have a View Model that is passed to them upon creation (as I used storyboards here,
+the VM is passed after its instanciation). This VM is in charge of pulling and managing the
+required data.
+
+- Swift alternative to KVO
+Reacting to events is common to any software program. Doing so in an elegant way can be
+tedious (delegates) or lead to confusing code (notifications). KVO in Objective-C enabled
+very nice abstractions for reacting to events. KVO is not the Swift way, and programmers
+have come with alternatives. I am reusing such an alternative and have borrowed code to do so.
+It consists in defining an 'obversable' property and adding a callback when that property changes.
+
+- Filtering
+I did not find any elegant way of handling the filtering based on a search term on the title.
+Typically, such a feature is best handled on the API side by providing a query term, e.g. ?q=search_term
+Filtering the photos on the client side lead to ineffiency (potentially loading images that will never
+be used because filtered out) and complexity (dealing with 2 sets of data, one filtered, the other not)
+To avoid writing code I would not liked, I elected to do this: the title-based filtering would operate
+on 1 page of photos and no more loading of photos would be allowed (no infinited scrolling when searching).
+
+
+# Next improvements
+
+- API service
+I would typically separate all methods dealing with calling a 3rd party service into its own
+set of classes. Here, I've taken the shortcut of doing it in the MV.
+
+- Image caching
+There are plenty of nice libraries that deal with image caching. I would use one to avoid
+reloading the image every time it's shown.
+
+-
+
+
