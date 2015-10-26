@@ -70,7 +70,7 @@ class MISPhotosViewModel: NSObject {
         }
     }
     
-    private func serviceUrl(page page: Int, count: Int) -> NSURL? {
+    func serviceUrl(page page: Int, count: Int) -> NSURL? {
         var params = apiBaseParams
         params["image_size[]"] = "3"
         params["rpp"] = "\(count)"

@@ -47,7 +47,7 @@ class mis500pxTests: XCTestCase {
     func testViewModelUrl(){
         let vm = MISPhotosViewModel()
         let url = vm.serviceUrl(page: 1, count: 20)
-        XCTAssertEqual("https://api.500px.com/v1/photos?consumer_key=vW8Ns53y0F57vkbHeDfe3EsYFCatTJ3BrFlhgV3W&feature=popular&rpp=20&page=1&image_size%5B%5D=2&", url?.absoluteString)
+        XCTAssertEqual("https://api.500px.com/v1/photos?consumer_key=vW8Ns53y0F57vkbHeDfe3EsYFCatTJ3BrFlhgV3W&feature=popular&rpp=20&page=1&image_size%5B%5D=3&", url?.absoluteString)
     }
     
     func testPerformanceExample() {

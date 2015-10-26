@@ -20,9 +20,20 @@ Filtering the photos on the client side lead to ineffiency (potentially loading 
 be used because filtered out) and complexity (dealing with 2 sets of data, one filtered, the other not)
 To avoid writing code I would not liked, I elected to do this: the title-based filtering would operate
 on 1 page of photos and no more loading of photos would be allowed (no infinited scrolling when searching).
+The current implementation is not very satisfying, I'd argue that implementing filtering on the
+server side would be most beneficial
+
+- First cell of collection view / Search bar view
+I usually do not use UICollectionViewController, but I did in the storyboard (which I usually do not use).
+Adding the search bar area  meant adding it to the collection view, as there is no container view to it.
+There might be a combination of inset/offset that I do not know of to avoid increasing the height of the
+first cell as otherwise it would be partially hidden.
 
 
 # Next improvements
+
+- Tests
+Better coverage, and seeing about the new Xcode 7 UI test support.
 
 - API service
 I would typically separate all methods dealing with calling a 3rd party service into its own
@@ -32,6 +43,7 @@ set of classes. Here, I've taken the shortcut of doing it in the MV.
 There are plenty of nice libraries that deal with image caching. I would use one to avoid
 reloading the image every time it's shown.
 
--
+- Quirks in the photo detail
+Centering the image, handling tap to zoom gesture, etc
 
 
