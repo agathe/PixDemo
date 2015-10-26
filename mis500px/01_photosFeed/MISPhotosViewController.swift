@@ -13,7 +13,7 @@ let defaultOffset = 44
 class MISPhotosViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     let cellIdentifierLarge = "LargeCell"
     
-    var viewModel: MISPhotosViewModel?
+    var viewModel: MISPhotosViewModel!
     let searchBar:UISearchBar = {
         let bar = UISearchBar()
         bar.searchBarStyle = .Minimal
@@ -41,25 +41,11 @@ class MISPhotosViewController: UICollectionViewController, UICollectionViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "500 px"
-        self.view.backgroundColor = UIColor.whiteColor()
-        self.collectionView?.backgroundColor = UIColor.clearColor()
-        self.edgesForExtendedLayout = UIRectEdge.None
+        self.title = "Feed"
 
+        self.edgesForExtendedLayout = UIRectEdge.None
         
-        self.searchView.addSubview(self.searchBar)
-        self.searchView.addSubview(self.searchBarCancelButton)
-        self.collectionView?.addSubview(self.searchView)
-        self.searchBar.delegate = self
-        let viewDict = ["search": self.searchBar, "reset":self.searchBarCancelButton]
-        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat("|-8-[search]-8-[reset(50)]-8-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict)
-        let vConstraints1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[search]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict)
-        let vConstraints2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[reset]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict)
-        self.searchView.addConstraints(hConstraints + vConstraints1 + vConstraints2)
-        self.searchBarCancelButton.addTarget(self, action: Selector("resetSearch"), forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.collectionView?.contentOffset = CGPoint(x: 0, y: defaultOffset)
-        
+        self.setupSearchBar()
         
         self.viewModel!.data.didChange.addHandler(self, handler: MISPhotosViewController.dataDidChange)
         self.viewModel!.isLoadingMore.didChange.addHandler(self, handler: MISPhotosViewController.isLoadingDidChange)
@@ -106,6 +92,21 @@ extension MISPhotosViewController {
             cell.setFirstCell(true)
         }
         return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let model = self.viewModel!.data.get()[indexPath.row]
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MISPhotoCollectionViewCell
+        let image = cell.imageView.image
+        if let image = image {
+            let viewModel = MISPhotoViewModel(model, image)
+            
+            let storyboard = UIStoryboard(name: "photo", bundle: nil)
+            let viewController = storyboard.instantiateViewControllerWithIdentifier("photoVC") as! MISPhotoViewController
+            viewController.viewModel = viewModel
+            self.navigationController?.pushViewController(viewController, animated: true)
+            
+        }
     }
     
 }
@@ -171,5 +172,21 @@ extension MISPhotosViewController {
             
             UIApplication.sharedApplication().networkActivityIndicatorVisible = newValue
         }
+    }
+    
+    func setupSearchBar() {
+        self.searchView.addSubview(self.searchBar)
+        self.searchView.addSubview(self.searchBarCancelButton)
+        self.collectionView?.addSubview(self.searchView)
+        self.searchBar.delegate = self
+        let viewDict = ["search": self.searchBar, "reset":self.searchBarCancelButton]
+        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat("|-8@200-[search]-8@200-[reset]-8@200-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict)
+        let vConstraints1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0@200-[search]-0@200-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict)
+        let vConstraints2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0@200-[reset]-0@200-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict)
+        self.searchView.addConstraints(hConstraints + vConstraints1 + vConstraints2)
+        self.searchBarCancelButton.addTarget(self, action: Selector("resetSearch"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.collectionView?.contentOffset = CGPoint(x: 0, y: defaultOffset)
+   
     }
 }

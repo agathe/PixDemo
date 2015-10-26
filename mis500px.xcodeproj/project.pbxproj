@@ -23,6 +23,9 @@
 		311C8D7B1BDB511E00F4020B /* UIImageView+MIS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311C8D7A1BDB511E00F4020B /* UIImageView+MIS.swift */; settings = {ASSET_TAGS = (); }; };
 		311C8D7D1BDB56DF00F4020B /* String+MIS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311C8D7C1BDB56DF00F4020B /* String+MIS.swift */; settings = {ASSET_TAGS = (); }; };
 		311C8D7F1BDB6EA200F4020B /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311C8D7E1BDB6EA200F4020B /* Observable.swift */; settings = {ASSET_TAGS = (); }; };
+		311C8D861BDDCDD400F4020B /* MISPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311C8D851BDDCDD400F4020B /* MISPhotoViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		311C8D881BDDCE1800F4020B /* photo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 311C8D871BDDCE1800F4020B /* photo.storyboard */; settings = {ASSET_TAGS = (); }; };
+		311C8D8A1BDDCF4300F4020B /* MISPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311C8D891BDDCF4300F4020B /* MISPhotoViewModel.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +48,7 @@
 /* Begin PBXFileReference section */
 		311C8D3C1BDB32C600F4020B /* mis500px.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mis500px.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		311C8D3F1BDB32C600F4020B /* MISAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MISAppDelegate.swift; sourceTree = "<group>"; };
-		311C8D411BDB32C600F4020B /* MISPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MISPhotosViewController.swift; sourceTree = "<group>"; };
+		311C8D411BDB32C600F4020B /* MISPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MISPhotosViewController.swift; path = 01_photosFeed/MISPhotosViewController.swift; sourceTree = "<group>"; };
 		311C8D441BDB32C600F4020B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		311C8D461BDB32C600F4020B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		311C8D491BDB32C600F4020B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,14 +61,17 @@
 		311C8D611BDB32C600F4020B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		311C8D6D1BDB32F600F4020B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		311C8D6E1BDB32F600F4020B /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		311C8D711BDB3B7300F4020B /* MISPhotosViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MISPhotosViewModel.swift; sourceTree = "<group>"; };
+		311C8D711BDB3B7300F4020B /* MISPhotosViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MISPhotosViewModel.swift; path = 01_photosFeed/MISPhotosViewModel.swift; sourceTree = "<group>"; };
 		311C8D731BDB3BF300F4020B /* MISPhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MISPhotoModel.swift; sourceTree = "<group>"; };
 		311C8D751BDB3C6600F4020B /* MISUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MISUserModel.swift; sourceTree = "<group>"; };
-		311C8D771BDB4C4700F4020B /* MISPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MISPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		311C8D771BDB4C4700F4020B /* MISPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MISPhotoCollectionViewCell.swift; path = 01_photosFeed/MISPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		311C8D7A1BDB511E00F4020B /* UIImageView+MIS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+MIS.swift"; path = "mis500px/UIImageView+MIS.swift"; sourceTree = "<group>"; };
 		311C8D7C1BDB56DF00F4020B /* String+MIS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MIS.swift"; sourceTree = "<group>"; };
 		311C8D7E1BDB6EA200F4020B /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		311C8D801BDDAA5F00F4020B /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		311C8D851BDDCDD400F4020B /* MISPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MISPhotoViewController.swift; sourceTree = "<group>"; };
+		311C8D871BDDCE1800F4020B /* photo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = photo.storyboard; sourceTree = "<group>"; };
+		311C8D891BDDCF4300F4020B /* MISPhotoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MISPhotoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,16 +128,15 @@
 		311C8D3E1BDB32C600F4020B /* mis500px */ = {
 			isa = PBXGroup;
 			children = (
+				311C8D841BDDCDAD00F4020B /* 02_photoview */,
+				311C8D831BDDCD8500F4020B /* 01_photosFeed */,
 				311C8D3F1BDB32C600F4020B /* MISAppDelegate.swift */,
-				311C8D411BDB32C600F4020B /* MISPhotosViewController.swift */,
 				311C8D431BDB32C600F4020B /* Main.storyboard */,
 				311C8D461BDB32C600F4020B /* Assets.xcassets */,
 				311C8D481BDB32C600F4020B /* LaunchScreen.storyboard */,
 				311C8D4B1BDB32C600F4020B /* Info.plist */,
-				311C8D711BDB3B7300F4020B /* MISPhotosViewModel.swift */,
 				311C8D731BDB3BF300F4020B /* MISPhotoModel.swift */,
 				311C8D751BDB3C6600F4020B /* MISUserModel.swift */,
-				311C8D771BDB4C4700F4020B /* MISPhotoCollectionViewCell.swift */,
 			);
 			path = mis500px;
 			sourceTree = "<group>";
@@ -162,6 +167,26 @@
 				311C8D7E1BDB6EA200F4020B /* Observable.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		311C8D831BDDCD8500F4020B /* 01_photosFeed */ = {
+			isa = PBXGroup;
+			children = (
+				311C8D411BDB32C600F4020B /* MISPhotosViewController.swift */,
+				311C8D711BDB3B7300F4020B /* MISPhotosViewModel.swift */,
+				311C8D771BDB4C4700F4020B /* MISPhotoCollectionViewCell.swift */,
+			);
+			name = 01_photosFeed;
+			sourceTree = "<group>";
+		};
+		311C8D841BDDCDAD00F4020B /* 02_photoview */ = {
+			isa = PBXGroup;
+			children = (
+				311C8D851BDDCDD400F4020B /* MISPhotoViewController.swift */,
+				311C8D871BDDCE1800F4020B /* photo.storyboard */,
+				311C8D891BDDCF4300F4020B /* MISPhotoViewModel.swift */,
+			);
+			path = 02_photoview;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				311C8D4A1BDB32C600F4020B /* LaunchScreen.storyboard in Resources */,
+				311C8D881BDDCE1800F4020B /* photo.storyboard in Resources */,
 				311C8D471BDB32C600F4020B /* Assets.xcassets in Resources */,
 				311C8D451BDB32C600F4020B /* Main.storyboard in Resources */,
 			);
@@ -299,11 +325,13 @@
 				311C8D781BDB4C4700F4020B /* MISPhotoCollectionViewCell.swift in Sources */,
 				311C8D421BDB32C600F4020B /* MISPhotosViewController.swift in Sources */,
 				311C8D721BDB3B7300F4020B /* MISPhotosViewModel.swift in Sources */,
+				311C8D8A1BDDCF4300F4020B /* MISPhotoViewModel.swift in Sources */,
 				311C8D741BDB3BF300F4020B /* MISPhotoModel.swift in Sources */,
 				311C8D401BDB32C600F4020B /* MISAppDelegate.swift in Sources */,
 				311C8D7F1BDB6EA200F4020B /* Observable.swift in Sources */,
 				311C8D7D1BDB56DF00F4020B /* String+MIS.swift in Sources */,
 				311C8D761BDB3C6600F4020B /* MISUserModel.swift in Sources */,
+				311C8D861BDDCDD400F4020B /* MISPhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
