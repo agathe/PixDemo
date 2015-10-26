@@ -66,8 +66,8 @@
 		311C8D751BDB3C6600F4020B /* MISUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MISUserModel.swift; sourceTree = "<group>"; };
 		311C8D771BDB4C4700F4020B /* MISPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MISPhotoCollectionViewCell.swift; path = 01_photosFeed/MISPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		311C8D7A1BDB511E00F4020B /* UIImageView+MIS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+MIS.swift"; path = "mis500px/UIImageView+MIS.swift"; sourceTree = "<group>"; };
-		311C8D7C1BDB56DF00F4020B /* String+MIS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MIS.swift"; sourceTree = "<group>"; };
-		311C8D7E1BDB6EA200F4020B /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		311C8D7C1BDB56DF00F4020B /* String+MIS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+MIS.swift"; path = "mis500px/String+MIS.swift"; sourceTree = "<group>"; };
+		311C8D7E1BDB6EA200F4020B /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Observable.swift; path = mis500px/Observable.swift; sourceTree = "<group>"; };
 		311C8D801BDDAA5F00F4020B /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		311C8D851BDDCDD400F4020B /* MISPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MISPhotoViewController.swift; sourceTree = "<group>"; };
 		311C8D871BDDCE1800F4020B /* photo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = photo.storyboard; sourceTree = "<group>"; };
